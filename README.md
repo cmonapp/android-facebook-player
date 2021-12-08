@@ -19,7 +19,7 @@ and:
 
 ```gradle
 dependencies {
-    compile 'fr.cmonapp:android-facebook-player:{latest version}'
+    compile 'com.github.cmonapp:android-facebook-player:{latest version}'
 }
 ```
 
@@ -39,11 +39,12 @@ dependencies {
 
 val facebookPlayerView = findViewById<FacebookPlayerView>(R.id.player)
 
-val params = FacebookPlayerParameters("https://www.facebook.com/facebook/videos/10153231379946729/")
+val videoUrl = "https://www.facebook.com/facebook/videos/10153231379946729/"
+val params = FacebookPlayerParameters(videoUrl)
 if (params.checkVideoUrl()) {
-    facebookPlayerView.load(params) {  facebookPlayer ->
+    facebookPlayerView.load(params) { facebookPlayer ->
         // Player is loaded
-        
+
         //Examples usage
         facebookPlayer.play()
 
@@ -58,15 +59,15 @@ if (params.checkVideoUrl()) {
         facebookPlayer.isMuted()
 
         facebookPlayer.setVolume(0.5F)
-        
+
         facebookPlayer.getVolume()
 
-        facebookPlayer.getCurrentPosition {  seconds ->
-            
+        facebookPlayer.getCurrentPosition { seconds ->
+
         }
-        
+
         facebookPlayer.getDuration()
-    
+
     }
 }
 

@@ -1,16 +1,11 @@
-package fr.cmonapp.android_facebook_player
+package fr.cmonapp.android_facebook_player.sample
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -21,7 +16,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.accompanist.flowlayout.FlowRow
-import fr.cmonapp.android_facebook_player.ui.theme.AppTheme
+import fr.cmonapp.android_facebook_player.*
+import fr.cmonapp.android_facebook_player.sample.R
+import fr.cmonapp.android_facebook_player.sample.ui.theme.AppTheme
 
 
 class ComposeMainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package fr.cmonapp.android_facebook_player.ui.theme
+package fr.cmonapp.android_facebook_player.sample.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

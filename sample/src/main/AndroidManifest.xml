@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.cmonapp.android_facebook_player">
+    package="fr.cmonapp.android_facebook_player.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

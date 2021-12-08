@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "fr.cmonapp.android_facebook_player"
+        applicationId "fr.cmonapp.android_facebook_player.sample"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -62,7 +62,7 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
     implementation project(":library")
 }

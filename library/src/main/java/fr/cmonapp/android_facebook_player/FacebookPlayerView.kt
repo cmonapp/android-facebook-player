@@ -12,29 +12,36 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 
 
-class FacebookPlayerView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0):
+class FacebookPlayerView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     AdaptiveFacebookPlayerFrameLayout(context, attrs, defStyleAttr) {
 
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet? = null) : this(context, attrs, 0)
 
-    private val webViewFacebookVideoPlayer: WebViewFacebookVideoPlayer = WebViewFacebookVideoPlayer(context)
+    private val webViewFacebookVideoPlayer: WebViewFacebookVideoPlayer =
+        WebViewFacebookVideoPlayer(context)
 
     init {
         webViewFacebookVideoPlayer.setBackgroundColor(Color.parseColor("#000000"))
-        addView(webViewFacebookVideoPlayer, LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        addView(
+            webViewFacebookVideoPlayer,
+            LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        )
     }
 
-    fun load(params: FacebookPlayerParameters, listener: (FacebookPlayer) -> Unit) {
+    fun load(params: FacebookPlayerParameters, listener: ((FacebookPlayer) -> Unit)? = null) {
         webViewFacebookVideoPlayer.initialize(params, listener)
     }
 }
 
 
-class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-    : WebView(context, attrs, defStyleAttr) {
+class WebViewFacebookVideoPlayer constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : WebView(context, attrs, defStyleAttr) {
 
-    lateinit var facebookPlayerBridge: FacebookPlayerBridge
+    private lateinit var facebookPlayerBridge: FacebookPlayerBridge
     private val mainThreadHandler: Handler = Handler(Looper.getMainLooper())
 
     override fun loadUrl(url: String) {
@@ -46,7 +53,7 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     fun initialize(
         params: FacebookPlayerParameters,
-        listener: (FacebookPlayer) -> Unit
+        listener: ((FacebookPlayer) -> Unit)? = null
     ) {
         settings.javaScriptEnabled = true
         settings.mediaPlaybackRequiresUserGesture = false
@@ -57,7 +64,7 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
 
         val facebookPlayerListener = object : FacebookPlayerListener {
             override fun isReadyCallback() {
-                listener.invoke(facebookPlayer)
+                listener?.invoke(facebookPlayer)
             }
 
             override fun startedPlayingCallback() {
@@ -83,9 +90,10 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
         facebookPlayerBridge = FacebookPlayerBridge(facebookPlayerListener)
         addJavascriptInterface(facebookPlayerBridge, "FacebookPlayerBridge")
 
-        val htmlPage = resources.openRawResource(R.raw.facebook_player).bufferedReader().use { it.readText() }
-            .replace("{your-app-id}", params.appId)
-            .replace("{video-url}", params.videoUrl)
+        val htmlPage =
+            resources.openRawResource(R.raw.facebook_player).bufferedReader().use { it.readText() }
+                .replace("{your-app-id}", params.appId)
+                .replace("{video-url}", params.videoUrl)
 
         loadDataWithBaseURL("https://www.facebook.com", htmlPage, "text/html", "utf-8", null)
     }
@@ -94,40 +102,49 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
     fun play() {
         loadUrl("javascript:play()")
     }
+
     fun pause() {
         loadUrl("javascript:pause()")
     }
+
     fun seek(seconds: Int) {
         loadUrl("javascript:seek($seconds)")
     }
+
     fun mute() {
         loadUrl("javascript:mute()")
     }
+
     fun unMute() {
         loadUrl("javascript:unMute()")
     }
-    fun isMuted() : Boolean {
+
+    fun isMuted(): Boolean {
         return facebookPlayerBridge.isMute
     }
+
     fun setVolume(volume: Float) {
         loadUrl("javascript:setVolume($volume)")
     }
+
     fun getVolume(): Float {
-       return facebookPlayerBridge.volume
+        return facebookPlayerBridge.volume
     }
+
     fun getCurrentPosition(callback: (seconds: Int) -> Unit) {
         facebookPlayerBridge.currentPositionCallback = callback
         loadUrl("javascript:getCurrentPosition()")
     }
-    fun getDuration() : Int {
+
+    fun getDuration(): Int {
         return facebookPlayerBridge.duration
     }
 
 
     class FacebookPlayerBridge(private val facebookPlayerListener: FacebookPlayerListener? = null) {
 
-        var currentPositionCallback: ((seconds: Int) -> Unit) ?= null
-        var isReady = false
+        var currentPositionCallback: ((seconds: Int) -> Unit)? = null
+        private var isReady = false
         var volume = 1F
         var isMute: Boolean = false
         var duration = 0
@@ -135,31 +152,37 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
 
         @JavascriptInterface
         fun isReadyCallback() {
-            if(!isReady){
+            if (!isReady) {
                 facebookPlayerListener?.isReadyCallback()
                 isReady = true
             }
         }
+
         @JavascriptInterface
         fun startedPlayingCallback() {
             facebookPlayerListener?.startedPlayingCallback()
         }
+
         @JavascriptInterface
         fun pausedCallback() {
             facebookPlayerListener?.pausedCallback()
         }
+
         @JavascriptInterface
         fun finishedPlayingCallback() {
             facebookPlayerListener?.finishedPlayingCallback()
         }
+
         @JavascriptInterface
         fun startedBufferingCallback() {
             facebookPlayerListener?.startedBufferingCallback()
         }
+
         @JavascriptInterface
         fun finishedBufferingCallback() {
             facebookPlayerListener?.finishedBufferingCallback()
         }
+
         @JavascriptInterface
         fun errorCallback() {
             facebookPlayerListener?.errorCallback()
@@ -171,7 +194,7 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
         }
 
         @JavascriptInterface
-        fun setVolumeCallback(volume: Float){
+        fun setVolumeCallback(volume: Float) {
             this.volume = volume
         }
 
@@ -182,12 +205,12 @@ class WebViewFacebookVideoPlayer constructor(context: Context, attrs: AttributeS
 
         @JavascriptInterface
         fun updateDuration(seconds: Int) {
-           duration = seconds
+            duration = seconds
         }
 
     }
 
-    interface FacebookPlayerListener{
+    interface FacebookPlayerListener {
         fun isReadyCallback()
         fun startedPlayingCallback()
         fun pausedCallback()

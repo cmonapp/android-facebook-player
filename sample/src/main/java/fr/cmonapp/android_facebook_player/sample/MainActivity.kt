@@ -1,11 +1,13 @@
-package fr.cmonapp.android_facebook_player
+package fr.cmonapp.android_facebook_player.sample
 
 import android.os.Bundle
-import android.util.Log
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import fr.cmonapp.android_facebook_player.FacebookPlayerParameters
+import fr.cmonapp.android_facebook_player.FacebookPlayerView
+import fr.cmonapp.android_facebook_player.sample.R
 
 class MainActivity : AppCompatActivity() {
 
