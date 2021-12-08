@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">android-facebook-player</string>
+    <string name="title_activity_facebook_player">FacebookPlayerActivity</string>
+    <string name="play">play()</string>
+    <string name="pause">pause()</string>
+    <string name="seek">seek(seconds)</string>
+    <string name="mute">mute()</string>
+    <string name="un_mute">unMute()</string>
+    <string name="is_muted">isMuted()</string>
+    <string name="set_volume">setVolume(volume)</string>
+    <string name="get_volume">getVolume()</string>
+    <string name="get_current_position">getCurrentPosition()</string>
+    <string name="get_duration">getDuration()</string>
+    <string name="is_muted_message">is muted: %1$b</string>
+    <string name="volume_message">volume: %1$.2f</string>
+    <string name="get_current_position_message">current position: %1$d</string>
+    <string name="get_duration_message">duration: %1$d</string>
+    <string name="video_url_is_not_valid">Video url is not valid</string>
+</resources>
