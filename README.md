@@ -1,5 +1,7 @@
 # android-facebook-player
 
+[![](https://jitpack.io/v/cmonapp/android-facebook-player.svg)](https://jitpack.io/#cmonapp/android-facebook-player)
+
 Android Facebook Player is a simple Facebook Player for Android.
 
 The library use [API Embedded Video Player](https://developers.facebook.com/docs/plugins/embedded-video-player/api) inside of WebView.

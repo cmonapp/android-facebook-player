@@ -40,7 +40,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = 'fr.cmonapp'
+                groupId = 'com.github.cmonapp'
                 artifactId = 'android-facebook-player'
                 version = '1.0'
             }
