@@ -11,6 +11,15 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
 import android.webkit.WebView
 
+class FacebookPlayerParameters(val videoUrl: String, val appId: String = ""){
+    companion object{
+        const val FACEBOOK_VIDEO_URL_REGEX = "https?://.*facebook\\.com/(?:(?:video\\.php|watch\\/).*\\??v=\\d+|.*?/videos/.*/?\\d+)/?.*"
+    }
+
+    fun checkVideoUrl() : Boolean {
+        return videoUrl.matches(FACEBOOK_VIDEO_URL_REGEX.toRegex())
+    }
+}
 
 class FacebookPlayerView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     AdaptiveFacebookPlayerFrameLayout(context, attrs, defStyleAttr) {

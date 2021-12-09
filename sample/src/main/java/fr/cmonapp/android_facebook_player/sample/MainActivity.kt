@@ -7,13 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.cmonapp.android_facebook_player.FacebookPlayerParameters
 import fr.cmonapp.android_facebook_player.FacebookPlayerView
-import fr.cmonapp.android_facebook_player.sample.R
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        const val TAG = "FacebookPlayer"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

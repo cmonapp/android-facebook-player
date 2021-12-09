@@ -19,7 +19,7 @@ and:
 
 ```gradle
 dependencies {
-    compile 'com.github.cmonapp:android-facebook-player:{latest version}'
+    compile 'com.github.cmonapp:android-facebook-player:1.0.0'
 }
 ```
 
