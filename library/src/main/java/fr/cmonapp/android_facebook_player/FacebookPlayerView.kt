@@ -13,7 +13,7 @@ import android.webkit.WebView
 
 class FacebookPlayerParameters(val videoUrl: String, val appId: String = ""){
     companion object{
-        const val FACEBOOK_VIDEO_URL_REGEX = "https?://.*facebook\\.com/(?:(?:video\\.php|watch\\/).*\\??v=\\d+|.*?/videos/.*/?\\d+)/?.*"
+        const val FACEBOOK_VIDEO_URL_REGEX = "https?://.*facebook\\.com/(?:(?:video\\.php|watch\\/).*\\??v=\\d+|.*?/videos/.*/?\\d+)/?.*|https?://fb\\.watch/.*"
     }
 
     fun checkVideoUrl() : Boolean {
