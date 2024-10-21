@@ -40,7 +40,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.cmonapp"
                 artifactId = "android-facebook-player"
-                version = "1.0.2"
+                version = "1.0.3"
             }
         }
     }

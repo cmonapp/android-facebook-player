@@ -19,9 +19,11 @@ and:
 
 ```gradle
 dependencies {
-    implementation 'com.github.cmonapp:android-facebook-player:1.0.0'
+    implementation 'com.github.cmonapp:android-facebook-player:[latest_version]'
 }
 ```
+
+The latest version is: [![](https://jitpack.io/v/cmonapp/android-facebook-player.svg)](https://jitpack.io/#cmonapp/android-facebook-player)
 
 ## Usage
 
