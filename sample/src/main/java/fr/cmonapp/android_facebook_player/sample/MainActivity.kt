@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         WebView.setWebContentsDebuggingEnabled(true)
         val facebookPlayerView = findViewById<FacebookPlayerView>(R.id.player)
-        val params = FacebookPlayerParameters(Constants.VIDEO_URL)
+
+        val params = FacebookPlayerParameters(videoUrl = Constants.VIDEO_URL)
         if (params.checkVideoUrl()) {
 
             facebookPlayerView.load(params) { facebookPlayer ->

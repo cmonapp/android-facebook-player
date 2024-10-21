@@ -11,9 +11,9 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
 import android.webkit.WebView
 
-class FacebookPlayerParameters(val videoUrl: String, val appId: String = ""){
+class FacebookPlayerParameters(val videoUrl: String, val appId: String = "", val width: String = "auto"){
     companion object{
-        const val FACEBOOK_VIDEO_URL_REGEX = "https?://.*facebook\\.com/(?:(?:video\\.php|watch\\/).*\\??v=\\d+|.*?/videos/.*/?\\d+)/?.*|https?://fb\\.watch/.*"
+        const val FACEBOOK_VIDEO_URL_REGEX = "https?://.*facebook\\.com/(?:(?:video\\.php|watch/).*\\??v=\\d+|.*?/videos/.*/?\\d+|reel/\\d+)/?.*|https?://fb\\.watch/.*"
     }
 
     fun checkVideoUrl() : Boolean {
@@ -103,6 +103,7 @@ class WebViewFacebookVideoPlayer constructor(
             resources.openRawResource(R.raw.facebook_player).bufferedReader().use { it.readText() }
                 .replace("{your-app-id}", params.appId)
                 .replace("{video-url}", params.videoUrl)
+                .replace("{data-width}", params.width)
 
         loadDataWithBaseURL("https://www.facebook.com", htmlPage, "text/html", "utf-8", null)
     }
